@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @date: 2020/12/16
  */
 @Controller
-public class RedisTestController {
+public class MyReactiveRedisController {
 
     @Qualifier("reactiveRedisTemplate")
     private ReactiveStringRedisTemplate reactiveRedisTemplate;
