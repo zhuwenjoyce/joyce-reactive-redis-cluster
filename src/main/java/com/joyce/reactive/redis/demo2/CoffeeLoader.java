@@ -26,8 +26,8 @@ public class CoffeeLoader {
 				.serverCommands()
 				.flushAll()
 				.thenMany(
-					Flux.just("Jet Black Redis", "Darth Redis", "Black Alert Redis")
-						.map(name -> new Coffee(UUID.randomUUID().toString(), name))
+					Flux.just("a Jet Black Redis", "b Darth Redis", "c Black Alert Redis")
+						.map(name -> new Coffee(String.valueOf(name.charAt(0)), name))
 						.flatMap(coffee -> coffeeOps.opsForValue().set(coffee.getId(), coffee))
 				)
 				.thenMany(coffeeOps.keys("*")
