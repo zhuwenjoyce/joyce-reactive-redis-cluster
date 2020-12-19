@@ -1,13 +1,13 @@
-package com.joyce.reactive.redis;
+package com.joyce.reactive.redis.demo1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JoyceReactiveRedisClusterApplication {
+public class ReactiveRedisDemo1Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JoyceReactiveRedisClusterApplication.class, args);
+		SpringApplication.run(ReactiveRedisDemo1Application.class, args);
 	}
 
 }

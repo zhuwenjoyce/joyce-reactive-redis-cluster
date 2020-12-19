@@ -24,7 +24,7 @@ public class MyRedisController {
     private static final Random random = new Random();
 
     @RequestMapping("/my-redis/save-and-find")
-    public Optional<Student> t() {
+    public Optional<Student> t() throws InterruptedException {
         String id = UUID.randomUUID().toString();
         studentRepository.save(
                 Student.builder()
@@ -34,6 +34,7 @@ public class MyRedisController {
                         .build()
         );
         Optional<Student> student = studentRepository.findById(id);
+        studentRepository.wait(24 * 60 * 60 * 1000L); // expiration time is one day
         studentRepository.deleteById(id);
         return student;
     }

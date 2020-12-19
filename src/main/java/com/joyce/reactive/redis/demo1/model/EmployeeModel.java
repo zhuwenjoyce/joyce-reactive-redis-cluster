@@ -1,4 +1,4 @@
-package com.joyce.reactive.redis.model;
+package com.joyce.reactive.redis.demo1.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,6 +15,7 @@ import java.io.Serializable;
  */
 @Data
 @ToString
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
