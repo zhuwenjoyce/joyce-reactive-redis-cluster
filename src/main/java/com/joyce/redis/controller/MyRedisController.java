@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
@@ -24,7 +26,7 @@ public class MyRedisController {
     private static final Random random = new Random();
 
     @RequestMapping("/my-redis/save-and-find")
-    public Optional<Student> t() throws InterruptedException {
+    public Optional<Student> saveAndFind() throws InterruptedException {
         String id = UUID.randomUUID().toString();
         studentRepository.save(
                 Student.builder()
@@ -37,6 +39,23 @@ public class MyRedisController {
         studentRepository.wait(24 * 60 * 60 * 1000L); // expiration time is one day
         studentRepository.deleteById(id);
         return student;
+    }
+
+    @RequestMapping("/my-redis/init-redis-data")
+    public Map<String, Object> initRedisData() throws InterruptedException {
+        studentRepository.save(
+                Student.builder()
+                        .id("id-student")
+                        .name("username")
+                        .grade(random.nextInt(10))
+                        .build()
+        );
+        return new HashMap<>();
+    }
+
+    @RequestMapping("/my-redis/get-key-id-student")
+    public Optional<Student> getKeyIdStudent() {
+        return studentRepository.findById("id-student");
     }
 
 }

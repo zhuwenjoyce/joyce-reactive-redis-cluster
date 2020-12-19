@@ -39,11 +39,11 @@ public class MyReactiveRedisController {
     @GetMapping("/my-reactive-redis/init-key-abc")
     public Map<String, Object> initRedisData () {
         EmployeeModel employee = EmployeeModel.builder()
-                .id("abc")
+                .id("id-EmployeeModel")
                 .name("my-username")
                 .department("department-A")
                 .build();
-        Mono<Boolean> booleanMono = reactiveRedisTemplate.opsForValue().set("abc", employee);
+        Mono<Boolean> booleanMono = reactiveRedisTemplate.opsForValue().set("id-EmployeeModel", employee);
         booleanMono.subscribe();
         // expiration time is one day
         reactiveRedisTemplate.expire("abc", Duration.of(24L, ChronoUnit.HOURS));
@@ -52,7 +52,7 @@ public class MyReactiveRedisController {
 
     @GetMapping("/my-reactive-redis/get-key-abc")
     public Mono<EmployeeModel> getEmployeeModelByRedis() {
-        return reactiveRedisTemplate.opsForValue().get("abc");
+        return reactiveRedisTemplate.opsForValue().get("id-EmployeeModel");
     }
 
 }
